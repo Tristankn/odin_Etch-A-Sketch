@@ -5,14 +5,15 @@ Sets up the 16 horizontal lines of the grid
 Assumes the flexGrid is already implemented in the DOM
 */
 
-const GRIDSIZE = 50;
+const GRID_HEIGHT = 50;
+const GRID_WIDTH = 50;
 let drawingColor = "white";
 
 function createGridLines(){
 
     let flexGrid = document.querySelector("#flexGrid")
     
-    for(let i = 0; i < GRIDSIZE; i++){
+    for(let i = 0; i < GRID_HEIGHT; i++){
         console.log("made class");
         
         const gridLine = document.createElement("div");
@@ -29,7 +30,7 @@ Assumes the createGridLines is already called upon to set up the lines
 function createGridBoxes(){
     let gridLines = document.querySelectorAll(".gridLine");
     gridLines.forEach((line) => {
-        for(let i = 0; i < GRIDSIZE; i++){
+        for(let i = 0; i < GRID_WIDTH; i++){
             const gridBox = document.createElement("div");
             gridBox.classList.add("gridBox");
             line.appendChild(gridBox);
@@ -65,10 +66,23 @@ screen.addEventListener('mouseup', () => {
 /*
 
 */
+
+let colors = document.querySelectorAll(".color");
+colors.forEach(color => {
+    color.addEventListener('click', changeColor);
+})
+
+function changeColor(event){
+    drawingColor = event.currentTarget.id;
+}
+
+
+
+
 function draw(event){
     if(mousedown){
 
-        event.currentTarget.style.backgroundColor = "blue";
+        event.currentTarget.style.backgroundColor = drawingColor;
     }
 }
 

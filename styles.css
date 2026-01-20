@@ -9,6 +9,7 @@ body {
     width: 100%;
 
     font-family: Inter;
+    background-color: aliceblue;
 }
 header{
     display: flex;
@@ -72,6 +73,8 @@ header{
     justify-content: center;
 
     background-color: aliceblue;
+    border: 5px solid black;
+    margin: 50px 500px;
 
 }
 
@@ -79,6 +82,11 @@ header{
     font-size: 30px;
     font-weight: bold;
     
+}
+
+#changeColor {
+    display: flex;
+    flex-direction: row;
 }
 
 #colors {

@@ -61,7 +61,6 @@ header{
     display: flex;
     flex: 1;
     background-color: white;
-    border: 3px solid gray;
     
 
 }
@@ -75,6 +74,7 @@ header{
     background-color: aliceblue;
     border: 5px solid black;
     margin: 50px 500px;
+    padding: 30px;
 
 }
 
@@ -82,6 +82,12 @@ header{
     font-size: 30px;
     font-weight: bold;
     
+}
+
+.option{
+    display: flex;
+    flex: 1;
+    align-items: stretch;
 }
 
 #changeColor {
@@ -137,6 +143,15 @@ header{
 }
 #black {
     background-color: black;
+}
+
+#resetButton {
+    font-size: 30px;
+    padding: 10px 30px;
+    background-color: greenyellow;
+    border-radius: 30px;
+    border: 5px solid green;
+
 }
 
 footer {

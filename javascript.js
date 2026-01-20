@@ -87,6 +87,16 @@ function draw(event){
 }
 
 
+let resetButton = document.querySelector("#resetButton");
+
+resetButton.onclick = () => {
+    gridBoxes.forEach(box =>{
+        box.style.backgroundColor = "white";
+    })
+
+}
+
+
 
 
 

@@ -5,17 +5,18 @@ Sets up the 16 horizontal lines of the grid
 Assumes the flexGrid is already implemented in the DOM
 */
 
-const GRID_HEIGHT = 50;
-const GRID_WIDTH = 50;
+let GRID_HEIGHT = 64;
+let GRID_WIDTH = 64;
 let drawingColor = "white";
+let mousedown = false;
+
+
 
 function createGridLines(){
 
     let flexGrid = document.querySelector("#flexGrid")
     
     for(let i = 0; i < GRID_HEIGHT; i++){
-        console.log("made class");
-        
         const gridLine = document.createElement("div");
         gridLine.classList.add("gridLine");
         flexGrid.appendChild(gridLine);
@@ -37,31 +38,59 @@ function createGridBoxes(){
         }
 
     })
+
+    addEventListeners();
 }
 
 createGridLines();
 createGridBoxes();
+
+let slider = document.querySelector("#sizeSlider");
+slider.addEventListener("input", updateGrid);
+
+function updateGrid(){
+    let lines = document.querySelectorAll(".gridLine");
+
+    let sliderValue = slider.value;
+    GRID_HEIGHT = sliderValue;
+    GRID_WIDTH = sliderValue;
+    lines.forEach(line => {
+        line.remove();
+    });
+
+    createGridLines();
+    createGridBoxes();
+
+    let sizeSliderTitle = document.querySelector("#sizeSliderTitle");
+    sizeSliderTitle.textContent = `Selected grid size: ${GRID_HEIGHT} x ${GRID_HEIGHT}`;
+
+}
 
 /*
 Initiates a vairable for determening if mouse is pressed or not.
 Ads eventlisteners to make boxes change colors when mouse is hovering over them
 while the mouse is clicked
 */
-let screen = document.querySelector("body");
-let mousedown = false;
-let gridBoxes = document.querySelectorAll(".gridBox");
-gridBoxes.forEach(box => {
-    box.addEventListener('mouseenter', draw);
-})
 
-screen.addEventListener('mousedown', () => {
-    mousedown = true;
-})
 
-screen.addEventListener('mouseup', () => {
-    mousedown = false;
-})
+function addEventListeners(){
 
+    let screen = document.querySelector("body");
+    let gridBoxes = document.querySelectorAll(".gridBox");
+
+    gridBoxes.forEach(box => {
+        box.addEventListener('mouseenter', draw);
+    })
+    
+    screen.addEventListener('mousedown', () => {
+        mousedown = true;
+    })
+    
+    screen.addEventListener('mouseup', () => {
+        mousedown = false;
+    })
+    
+}
 
 /*
 
@@ -79,6 +108,7 @@ function changeColor(event){
 
 
 
+
 function draw(event){
     if(mousedown){
 
@@ -90,6 +120,7 @@ function draw(event){
 let resetButton = document.querySelector("#resetButton");
 
 resetButton.onclick = () => {
+    let gridBoxes = document.querySelectorAll(".gridBox");
     gridBoxes.forEach(box =>{
         box.style.backgroundColor = "white";
     })
